@@ -17,6 +17,9 @@ import img10 from "../../assets/Nfts/bighead-9.svg";
 import ETH from "../../assets/icons8-ethereum-48.png";
 import COOKIE from '../../assets/cookie.png';
 import TOTAL from '../../assets/total_cooke_box.png';
+import { ethers } from "ethers";
+import faveNFT from './FaveNFT.json';
+
 
 const ImgContainer = styled.div`
 width: 100%;
@@ -139,8 +142,8 @@ const SubTitle = styled.h3`
   font-weight: 600;
   width: 80%;
   align-items: flex-start;
-  margin-top: -95px;
-  margin-left: 170px;
+  margin-top: -60px;
+  margin-left: 60px;
 
   @media (max-width: 40em) {
     font-size: ${(props) => props.theme.fontmd};
@@ -159,9 +162,65 @@ outline: none;
 border: none;
 }`;
 
-const Showcase = () => {
+const Menu = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+
+  @media (max-width: 64em) {
+    /* 1024px */
+    position: fixed;
+    top: ${(props) => props.theme.navHeight};
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
+    z-index: 50;
+    background-color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.85)`};
+    backdrop-filter: blur(2px);
+    transform: ${(props) =>
+      props.click ? "translateY(0)" : "translateY(1000%)"};
+    transition: all 0.3s ease;
+    flex-direction: column;
+    justify-content: center;
+
+    touch-action: none;
+  }
+`;
+
+const MenuItem = styled.li`
+  margin: 0 1rem;
+  color: ${(props) => props.theme.text};
+  cursor: pointer;
+
+  &::after {
+    content: " ";
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: ${(props) => props.theme.text};
+    transition: width 0.3s ease;
+  }
+  &:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 64em) {
+    margin: 1rem 0;
+
+    &::after {
+      display: none;
+    }
+  }
+`;
+
+const Showcase = ({ accounts, setAccounts }) => {
   const [counter, setCounter] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
+
+  const [tokenBalance, setTokenBalance] = useState(0);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -175,20 +234,72 @@ const Showcase = () => {
     }, 1000);
   }
 
+  const askContractToClaim = async () => {
+    const CONTRACT_ADDRESS = "0xc851e96cD787D998C633dA187524Dd32Af4C5dbd";
+
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const connectedContract = new ethers.Contract(
+          CONTRACT_ADDRESS,
+          faveNFT.abi,
+          signer
+        );
+
+        // Get the balance of the connected wallet's address
+        const cookieToken = new ethers.Contract(faveNFT.abi, CONTRACT_ADDRESS);
+        const balance = await cookieToken.methods.balanceOf(accounts[0]).call();
+        setTokenBalance(balance);
+
+        console.log("Going to pop wallet now to pay gas...");
+        let claimtoken = await connectedContract.claimTokens();
+
+        console.log("Claiming...please wait.");
+        await claimtoken.wait();
+
+        console.log(
+          `Mined, see transaction: https://sepolia.etherscan.io/tx/${claimtoken.hash}`
+        );
+      } else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Section id="home">
       <Container>
-        <Box>
-          <Btn onClick={handleClick}>
-            <img src={TOTAL} width={500} />
-            <SubTitle>:{counter}</SubTitle>
-            <ImgContainer>
-              <img src={COOKIE} width={500} />
-            </ImgContainer>
-          </Btn>
-          {showAnimation && <div className="animation"><p>+1</p></div>}
-        </Box>
+        {/* {tokenBalance >= '5000000000000000000000' ? ( */}
+          <div>
+            <p>Has Enough Tokens: Yes</p>
+            <Box>
+              <Btn onClick={handleClick}>
+                <img src={TOTAL} width={500} />
+                <SubTitle>:{counter}</SubTitle>
+                <ImgContainer>
+                  <img src={COOKIE} width={500} />
+                </ImgContainer>
+              </Btn>
+              <Btn onClick={askContractToClaim}>Claim</Btn>
+              {showAnimation && <div className="animation"><p>+1</p></div>}
+            </Box>
+          </div>
+        {/* ) : ( */}
+          {/* <div>
+            <p>Not Up To 5000 $COOKE</p>
+          </div>
+        )} */}
       </Container>
+      <Menu>
+        <MenuItem><a href="https://t.me/CookeClicker">Telegram</a></MenuItem>
+        <MenuItem><a href="https://twitter.com/CookeClicker">Twitter</a></MenuItem>
+        <MenuItem><a href="">Dextools</a></MenuItem>
+      </Menu>
     </Section>
   );
 };
