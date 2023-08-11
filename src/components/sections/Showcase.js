@@ -255,7 +255,8 @@ const Showcase = ({ accounts, setAccounts }) => {
 
     fetchDocs();
   }, []);
-
+  
+  console.log("")
   const handleClick = async (e) => {
     e.preventDefault();
 
