@@ -69,7 +69,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  width: 50%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -274,26 +274,27 @@ const Showcase = ({ accounts, setAccounts }) => {
   return (
     <Section id="home">
       <Container>
-        {tokenBalance >= '5000000000000000000000' ? (
-          <div>
-            <p>Has Enough Tokens: Yes</p>
-            <Box>
-              <Btn onClick={handleClick}>
-                <img src={TOTAL} width={500} />
-                <SubTitle>:{counter}</SubTitle>
-                <ImgContainer>
-                  <img src={COOKIE} width={500} />
-                </ImgContainer>
-              </Btn>
-              <Btn onClick={askContractToClaim}>Claim</Btn>
-              {showAnimation && <div className="animation"><p>+1</p></div>}
-            </Box>
-          </div>
-        ) : (
-          <div>
-            <p>Not Up To 5000 $COOKE</p>
-          </div>
-        )}
+        <div>
+          <Box>
+            <Btn onClick={handleClick}>
+              {tokenBalance >= '5000000000000000000000' ? (
+                <div>
+                  <img src={TOTAL} width={`40%`} />
+                  <SubTitle>:{counter}</SubTitle>
+                  <Btn onClick={askContractToClaim}>Claim</Btn>
+                </div>
+              ) : (
+                <Box>
+                  <p>Have Aleast To 5000 $COOKE</p>
+                </Box>
+              )}
+              <ImgContainer>
+                <img src={COOKIE} width={`40%`} />
+              </ImgContainer>
+            </Btn>
+            {showAnimation && <div className="animation"><p>+1</p></div>}
+          </Box>
+        </div>
       </Container>
       <Menu>
         <MenuItem>

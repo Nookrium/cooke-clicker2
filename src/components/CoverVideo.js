@@ -13,13 +13,14 @@ video{
 
 @meda (max-width: 64em) {
   min-width: 40vh;
+  width:10px;
 }
 `
 
 const CoverVideo = () => {
   return (
     <VideoContainer>
-        <img src={LOGO}/>
+        <img width={`100%`} src={LOGO}/>
     </VideoContainer>
   )
 }

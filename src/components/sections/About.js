@@ -45,7 +45,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
-  width: 50%;
+  width: 80%;
   height: 100%;
   min-height: 60vh;
   display: flex;
