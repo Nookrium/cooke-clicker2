@@ -285,7 +285,7 @@ const Showcase = ({ accounts, setAccounts }) => {
                 </div>
               ) : (
                 <Box>
-                  <p>Have Aleast To 5000 $COOKE</p>
+                  <p>Must Have Aleast To 5000 $COOKE To Claim Rewards</p>
                 </Box>
               )}
               <ImgContainer>
