@@ -6,7 +6,7 @@ import RoundTextBlack from "../../assets/Rounded-Text-Black.png";
 import Button from "../Button";
 
 const Section = styled.section`
-  min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
+  min-height: 80vh;
   width: 100vw;
   position: relative;
   background-color: ${(props) => props.theme.body};
@@ -114,10 +114,10 @@ const Home = () => {
         <Box>
           <CoverVideo />
         </Box>
-        <Round>
+        {/* <Round>
           <Circle>&#x2193;</Circle>
           <img src={RoundTextBlack} alt="NFT" />
-        </Round>
+        </Round> */}
       </Container>
     </Section>
   );

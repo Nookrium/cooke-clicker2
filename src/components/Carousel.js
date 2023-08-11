@@ -19,7 +19,7 @@ video{
 const Carousel = () => {
   return (
     <VideoContainer>
-        <img src={LOGO} width="500px"/>
+        <img src={LOGO} width="100%"/>
     </VideoContainer>
   )
 }

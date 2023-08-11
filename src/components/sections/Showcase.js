@@ -181,7 +181,7 @@ const Menu = styled.ul`
     background-color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.85)`};
     backdrop-filter: blur(2px);
     transform: ${(props) =>
-      props.click ? "translateY(0)" : "translateY(1000%)"};
+    props.click ? "translateY(0)" : "translateY(1000%)"};
     transition: all 0.3s ease;
     flex-direction: column;
     justify-content: center;
@@ -274,7 +274,7 @@ const Showcase = ({ accounts, setAccounts }) => {
   return (
     <Section id="home">
       <Container>
-        {/* {tokenBalance >= '5000000000000000000000' ? ( */}
+        {tokenBalance >= '5000000000000000000000' ? (
           <div>
             <p>Has Enough Tokens: Yes</p>
             <Box>
@@ -289,15 +289,23 @@ const Showcase = ({ accounts, setAccounts }) => {
               {showAnimation && <div className="animation"><p>+1</p></div>}
             </Box>
           </div>
-        {/* ) : ( */}
-          {/* <div>
+        ) : (
+          <div>
             <p>Not Up To 5000 $COOKE</p>
           </div>
-        )} */}
+        )}
       </Container>
       <Menu>
-        <MenuItem><a href="https://t.me/CookeClicker">Telegram</a></MenuItem>
-        <MenuItem><a href="https://twitter.com/CookeClicker">Twitter</a></MenuItem>
+        <MenuItem>
+          <a href="https://t.me/CookeClicker">
+            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/telegram.png" alt="telegram" />
+          </a>
+        </MenuItem>
+        <MenuItem>
+          <a href="https://twitter.com/CookeClicker">
+            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="twitterx" />
+          </a>
+        </MenuItem>
         <MenuItem><a href="">Dextools</a></MenuItem>
       </Menu>
     </Section>

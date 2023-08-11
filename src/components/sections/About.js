@@ -4,7 +4,7 @@ import Carousel from "../Carousel";
 import Button from "../Button";
 import { dark } from "../../styles/Themes";
 const Section = styled.section`
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100%;
   background-color: #F2B57E;
   display: flex;
@@ -14,7 +14,7 @@ const Section = styled.section`
 `;
 
 const Container = styled.div`
-  width: 75%;
+  width: 90%;
   min-height: 80vh;
   margin: 0 auto;
   // background-color: lightblue;
@@ -149,13 +149,12 @@ const About = () => {
           <Carousel />
         </Box>
         <Box>
-          <Title> Welcome to the enthralling world of the Ethereum Cooke Clicker</Title>
+          <Title> Introducing Cooke Clicker On Ethereum</Title>
           <SubTextLight>
             When you join the game, you'll need to connect your wallet and have at least 5,000 $COOKE tokens to play. The gameplay is like a classic cookie clicker - you click to produce cookies, buy upgrades, and utilities to gain even more $COOKE. Here's the cool part: You can use our special $COOKE token to speed up your progress by unlocking awesome upgrades.
           </SubTextLight>
           <SubTextLight>
             Cooke Clicker is designed with an inherent leaderboard feature and periodic resets, ensuring an equitable gaming experience for all participants. Notably, the highest achievers on this leaderboard shall be acknowledged and rewarded through numerous incentives and gratifications.
-
           </SubTextLight>
           <SubTextLight>
             Get to Clicking!
