@@ -19,6 +19,16 @@ import COOKIE from '../../assets/cookie.png';
 import TOTAL from '../../assets/total_cooke_box.png';
 import { ethers } from "ethers";
 import faveNFT from './FaveNFT.json';
+import firestore from "../../firebase";
+import {
+  collection,
+  doc,
+  getDoc,
+  updateDoc,
+  addDoc,
+  getDocs,
+  onSnapshot
+} from "firebase/firestore";
 
 
 const ImgContainer = styled.div`
@@ -218,21 +228,58 @@ const MenuItem = styled.li`
 
 const Showcase = ({ accounts, setAccounts }) => {
   const [counter, setCounter] = useState(0);
+  const [hits, setHits] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
 
   const [tokenBalance, setTokenBalance] = useState(0);
 
-  const handleClick = (e) => {
+  const fetchDocs = async () => {
+    const docRef = doc(firestore, "button-data", "button-object");
+    const collectionRef = collection(docRef, "users");
+
+    onSnapshot(collectionRef, (querySnapshot) => {
+      if (!querySnapshot.empty) {
+        // console.log(querySnapshot);
+        setCounter(querySnapshot.size);
+      } else {
+        console.log("No documents found!");
+        setCounter(0);
+      }
+    });
+  };
+
+  // const [def, setDef] = useState([fetchDocs()]);
+
+  useEffect(() => {
+    // Get the current hit count from Firestore on component mount
+
+    fetchDocs();
+  }, []);
+
+  const handleClick = async (e) => {
     e.preventDefault();
+
+    try {
+      const docRef = await addDoc(
+        collection(firestore, "button-data", "button-object", "users"),
+        {
+          identity: "user wallet address"
+        }
+      );
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+
     setCounter(counter + 1);
-    console.log('The link was clicked.');
+    console.log("The link was clicked.");
     setShowAnimation(true);
 
     // Clear animation after a short delay
     setTimeout(() => {
       setShowAnimation(false);
     }, 1000);
-  }
+  };
 
   const askContractToClaim = async () => {
     const CONTRACT_ADDRESS = "0xc851e96cD787D998C633dA187524Dd32Af4C5dbd";
