@@ -306,7 +306,11 @@ const Showcase = ({ accounts, setAccounts }) => {
             <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="twitterx" />
           </a>
         </MenuItem>
-        <MenuItem><a href="">Dextools</a></MenuItem>
+        <MenuItem>
+          <a href="">
+            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/bullish.png" alt="bullish" />
+          </a>
+        </MenuItem>
       </Menu>
     </Section>
   );
