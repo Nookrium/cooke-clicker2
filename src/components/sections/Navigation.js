@@ -99,7 +99,7 @@ const Menu = styled.ul`
     background-color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.85)`};
     backdrop-filter: blur(2px);
     transform: ${(props) =>
-      props.click ? "translateY(0)" : "translateY(1000%)"};
+    props.click ? "translateY(0)" : "translateY(1000%)"};
     transition: all 0.3s ease;
     flex-direction: column;
     justify-content: center;
@@ -230,6 +230,21 @@ const Navigation = ({ accounts, setAccounts }) => {
           <MenuItem onClick={() => scrollTo("home")}>Home</MenuItem>
           <MenuItem onClick={() => scrollTo("about")}>About</MenuItem>
           <MenuItem onClick={() => scrollTo("showcase")}>Game</MenuItem>
+          <MenuItem>
+            <a href="https://t.me/CookeClicker">
+              <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/telegram.png" alt="telegram" />
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a href="https://twitter.com/CookeClicker">
+              <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="twitterx" />
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a href="">
+              <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/bullish.png" alt="bullish" />
+            </a>
+          </MenuItem>
           <MenuItem>
             <div className="mobile">
               {web3Provider == null ? (
