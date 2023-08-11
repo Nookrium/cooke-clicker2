@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import CoverVideo from "../CoverVideo";
 import TypeWriterText from "../TypeWriterText";
