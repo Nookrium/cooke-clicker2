@@ -296,23 +296,6 @@ const Showcase = ({ accounts, setAccounts }) => {
           </Box>
         </div>
       </Container>
-      <Menu>
-        <MenuItem>
-          <a href="https://t.me/CookeClicker">
-            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/telegram.png" alt="telegram" />
-          </a>
-        </MenuItem>
-        <MenuItem>
-          <a href="https://twitter.com/CookeClicker">
-            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/twitterx.png" alt="twitterx" />
-          </a>
-        </MenuItem>
-        <MenuItem>
-          <a href="">
-            <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/bullish.png" alt="bullish" />
-          </a>
-        </MenuItem>
-      </Menu>
     </Section>
   );
 };
