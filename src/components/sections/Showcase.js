@@ -1,9 +1,20 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import firebase from 'firebase/app';
-import { getDatabase, ref, set } from "firebase/database";
-import { initializeApp } from "firebase/app";
+import CoverVideo from "../CoverVideo";
+import TypeWriterText from "../TypeWriterText";
+
+import img1 from "../../assets/Nfts/bighead.svg";
+import img2 from "../../assets/Nfts/bighead-1.svg";
+import img3 from "../../assets/Nfts/bighead-2.svg";
+import img4 from "../../assets/Nfts/bighead-3.svg";
+import img5 from "../../assets/Nfts/bighead-4.svg";
+import img6 from "../../assets/Nfts/bighead-5.svg";
+import img7 from "../../assets/Nfts/bighead-6.svg";
+import img8 from "../../assets/Nfts/bighead-7.svg";
+import img9 from "../../assets/Nfts/bighead-8.svg";
+import img10 from "../../assets/Nfts/bighead-9.svg";
+import ETH from "../../assets/icons8-ethereum-48.png";
 import COOKIE from '../../assets/cookie.png';
 import TOTAL from '../../assets/total_cooke_box.png';
 import { ethers } from "ethers";
@@ -206,16 +217,6 @@ const MenuItem = styled.li`
 `;
 
 const Showcase = ({ accounts, setAccounts }) => {
-  const database = getDatabase();
-  function writeUserData(userId, name, email, imageUrl) {
-    const db = getDatabase();
-    set(ref(db, 'users/' + userId), {
-      username: name,
-      email: email,
-      profile_picture : imageUrl
-    });
-  }
-  
   const [counter, setCounter] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
 
